@@ -1,13 +1,78 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <script>
-      // JavaScript function definition here
-    </script> 
-  </head>
-  
-  <body>
-    <!-- Your page here (can include more script tags) -->
+  <meta charset="utf-8">
+    <title>Draw pyramid</title>
+
     
+  </head>
+    <!-- Your page here (can include more script tags) -->
+        
+    <h1> Enter Pyramid Size </h1>
+    <input type="number" id="size" value="2">
+    <button onclick="drawPyramid()">Select Size</button>
+    
+    <h2> Or Select Random </h2>
+    <button onclick="drawPyramidR()">Random</button>
+    
+    <h3> Show/Hide numbers and pyramids </h3>
+        <button id="hide">Hide</button>
+    <button id="show">Show</button>
+    
+    <h4> Sizes </h4>
+    <p id = "sizes"> </p>
+    
+    <h5> Pyramid </h5>
+
+    <p id = "pyramid"> </p>
+    
+    <script src="jquery.js"></script>
+    <script>
+    var sizes = [];
+    function drawPyramidR(){
+    var x = Math.floor(Math.random() * 10 + 1);
+    var s ="";
+    for(i = 0; i < x; i ++){
+    s += "<br></br>";
+    for(j = 0; j < i + 1; j++){
+     s += "*";
+    }
+    }
+    sizes.push(x);
+    document.getElementById("pyramid").innerHTML = s;
+    printSizes();
+    }
+    
+    function drawPyramid(){
+    var x = document.getElementById("size").value;
+    var s ="";
+    for(i = 0; i < x; i ++){
+    s += "<br></br>";
+    for(j = 0; j < i + 1; j++){
+     s += "*";
+    }
+    }
+    sizes.push(x);
+    document.getElementById("pyramid").innerHTML = s;
+    printSizes();
+    }
+    function printSizes(){
+    var s = "";
+    for(i = 0; i<sizes.length;i++){
+    s += sizes[i];
+    if(i != sizes.length - 1){
+    s += ", "
+    }
+    }
+    document.getElementById("sizes").innerHTML = s;
+    }
+    $("#hide").click(function(){
+        $("p").hide();
+    });
+    $("#show").click(function(){
+        $("p").show();
+    });
+</script>
   </body>
 </html>
+
